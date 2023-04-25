@@ -10,4 +10,12 @@ class TicTacToe
     puts "\nPlayer 1: X || Player 2: O \n"
   end
 
+  # Display Methods
+  def to_s()
+    " Current Game: #{@board}\n Player 1 : #{@player1} \n Player 2 : #{@player2}"
+  end
+
 end
+
+game = TicTacToe.new
+puts game
