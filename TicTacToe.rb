@@ -118,17 +118,25 @@ class TicTacToe
     print_board()
 
     idx = gets().chomp
-    index = idx.to_i - 1
 
     # Terminating Game peacefully
     if idx == "c" || idx == "C"
       exit(0)
     end
 
+    index = idx.to_i - 1
+
     # Resetting Board
     # for r / R input
     if idx == "r" || idx == "R"
       reset_board()
+      put_mark()
+    end
+
+    # Validating input
+    if !idx.to_i.between?(1,size*size)
+      puts "Please enter numbers between 1 ~ #{size*size}"
+      puts "Now #{switch ? player1 : player2}\'s turn"
       put_mark()
     end
 
