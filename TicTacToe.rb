@@ -14,6 +14,13 @@ class TicTacToe
 
   # Helper methods
 
+  ## Checking Row number 
+  ## of a given index
+  def row_number(idx)
+    indexPlusOne = idx.to_i
+    return (indexPlusOne / size) + 1 - ((indexPlusOne % size) == 0 ? 1 : 0)
+  end
+
   ## Checking whether all 
   ## of the element in the 
   ## tray is X or O
@@ -22,6 +29,24 @@ class TicTacToe
   end
 
   # Winning Logics
+
+  ## Row Scan
+  def row_scan?(idx)
+    idx = idx.to_i
+    current_row = row_number(idx)
+    initial = board[idx - 1]
+    tray = []
+    for i in 1..(size - 1)
+      nxt = idx + i
+      if row_number(nxt) > current_row
+        nxt = nxt - size
+      end
+      c = initial <=> (board[nxt-1] || "A")
+      tray.push(c)
+    end
+
+    all_same?(tray)
+  end
 
   ## Column Scan
   def column_scan?(idx)
@@ -98,6 +123,7 @@ class TicTacToe
 
     # Scanning through 
     # board for Winning combo
+    p row_scan?(idx)
     p column_scan?(idx)
     p diagonal_scan?()
 
