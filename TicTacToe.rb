@@ -8,6 +8,7 @@ class TicTacToe
     @switch = true
 
     puts "\nPlayer 1: X || Player 2: O \n"
+    puts "\nNow its #{switch ? player1 : player2}\'s turn"
   end
 
   # Putting Marks
@@ -35,6 +36,7 @@ class TicTacToe
       end
     end
 
+    puts "\nNow its #{switch ? player1 : player2}\'s turn"
     put_mark()
   end
 
