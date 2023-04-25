@@ -144,11 +144,27 @@ class TicTacToe
       end
     end
 
-    # Scanning through 
-    # board for Winning combo
-    p row_scan?(idx)
-    p column_scan?(idx)
-    p diagonal_scan?()
+    # Scan through board
+    [
+      row_scan?(idx),
+      column_scan?(idx),
+      diagonal_scan?()
+
+    ].any? do |elm|
+      # If any scan comes true
+      # then the game ends
+      if elm == true
+        print_board()
+        won = switch ? player2 : player1
+        key = won.to_sym
+        #current_score = score.fetch(key)
+        #@score.store(key, current_score + 1)
+        puts "\n\n\nPlayer #{won} has won "
+        #print_score()
+        reset_board(switch)
+        put_mark()
+      end
+    end
 
     puts "\nNow its #{switch ? player1 : player2}\'s turn"
     put_mark()
