@@ -28,6 +28,17 @@ class TicTacToe
     tray.all?{|elm| elm == 0}
   end
 
+  ## Resetting the board
+  def reset_board(turn = false)
+    @board = Array.new(size*size,nil)
+    @switch = !turn
+    puts "\n---- The game has been reset ----"
+    puts "Player 1: X || Player 2: O \n"
+    puts "Press c or C and Enter to exit"
+    puts "\nNow its #{switch ? player1 : player2}\'s turn"
+  end
+  #--------------------
+
   # Winning Logics
 
   ## Row Scan
@@ -103,6 +114,18 @@ class TicTacToe
     idx = gets().chomp
     index = idx.to_i - 1
 
+    # Terminating Game peacefully
+    if idx == "c" || idx == "C"
+      exit(0)
+    end
+
+    # Resetting Board
+    # for r / R input
+    if idx == "r" || idx == "R"
+      reset_board()
+      put_mark()
+    end
+
     # Putting marks 
     # based on switch state
     if switch
@@ -149,5 +172,4 @@ class TicTacToe
 end
 
 game = TicTacToe.new
-puts game
 game.put_mark
