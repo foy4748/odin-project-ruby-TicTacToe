@@ -1,14 +1,20 @@
 class TicTacToe
-  attr_reader :board, :player1, :player2, :switch, :size
+  attr_reader :board, :player1, :player2, :switch, :size, :score
 
   def initialize(s=3)
-    @board = Array.new(9,nil)
+    @board = Array.new(s*s,nil)
     @player1 = "X"
     @player2 = "O"
     @switch = true
     @size = s
 
+    @score = { :X => 0, :O => 0 }
+
+    puts "\n---- Tutorial ----"
     puts "\nPlayer 1: X || Player 2: O \n"
+    puts "Press c or C and Enter to exit"
+    puts "Press r or R end Enter to reset the game"
+    puts "Type 1 ~ #{size*size} and Enter to mark the space\n"
     puts "\nNow its #{switch ? player1 : player2}\'s turn"
   end
 
@@ -157,10 +163,10 @@ class TicTacToe
         print_board()
         won = switch ? player2 : player1
         key = won.to_sym
-        #current_score = score.fetch(key)
-        #@score.store(key, current_score + 1)
+        current_score = score.fetch(key)
+        @score.store(key, current_score + 1)
         puts "\n\n\nPlayer #{won} has won "
-        #print_score()
+        print_score()
         reset_board(switch)
         put_mark()
       end
@@ -185,6 +191,12 @@ class TicTacToe
     puts b
   end
 
+  def print_score()
+    puts "\n ----- Score ----- \n"
+    for key, value in self.score
+      puts "#{key} : #{value}"
+    end
+  end
 end
 
 game = TicTacToe.new
