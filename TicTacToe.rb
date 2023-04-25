@@ -15,6 +15,16 @@ class TicTacToe
     " Current Game: #{@board}\n Player 1 : #{@player1} \n Player 2 : #{@player2}"
   end
 
+  def print_board()
+    b = ""
+    puts "\n"
+    self.board.each_with_index do |item, index|
+      b += "#{item || index + 1}#{(index + 1) % size == 0 ? "\n----------\n" : " | "}"
+    end
+
+    puts b
+  end
+
 end
 
 game = TicTacToe.new
